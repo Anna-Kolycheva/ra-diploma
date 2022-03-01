@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-   BrowserRouter as Router,
-   Route,
-   Routes,
-   Redirect,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import './App.css';
 import Header from './components/Header/Header';
@@ -24,9 +19,7 @@ function App() {
          <Header />
          <MainContainer>
             <Routes>
-               <Route exact path="/ra-diploma">
-                  <Redirect to="/" />
-               </Route>
+               <Route path="/ra-diploma" element={<HomePage />} />
                <Route path="/" element={<HomePage />} />
                <Route path="/about" element={<AboutPage />} />
                <Route path="/contacts" element={<ContactPage />} />
