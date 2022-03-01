@@ -29,31 +29,39 @@ export default function Products() {
    );
    if (icatalogisLoad || categoriesisLoad) return <Loader />;
 
+   if (storedItems.length)
+      return (
+         <div className="products">
+            <div className="row">
+               {storedItems.map((item) => (
+                  <Card item={item} key={item.id} />
+               ))}
+            </div>
+            <div className="text-center">
+               {!noMoreItems &&
+                  (!moreProductsisLoad ? (
+                     <button
+                        className="btn btn-outline-primary"
+                        type="button"
+                        onClick={onLoadMore}
+                     >
+                        Загрузить ещё
+                     </button>
+                  ) : (
+                     <Loader />
+                  ))}
+            </div>
+         </div>
+      );
+
    return (
       <div className="products">
          <div className="row">
-            {storedItems.length ? (
-               storedItems.map((item) => <Card item={item} key={item.id} />)
-            ) : (
-               <div>По Вашему запросу ничего не найдено.</div>
-            )}
-            {isError && (
+            {isError ? (
                <div>Произошла ошибка! Попробуйте вернуться позже!</div>
+            ) : (
+               <div>По Вашему запросу ничего не найдено!</div>
             )}
-         </div>
-         <div className="text-center">
-            {!noMoreItems &&
-               (!moreProductsisLoad ? (
-                  <button
-                     className="btn btn-outline-primary"
-                     type="button"
-                     onClick={onLoadMore}
-                  >
-                     Загрузить ещё
-                  </button>
-               ) : (
-                  <Loader />
-               ))}
          </div>
       </div>
    );

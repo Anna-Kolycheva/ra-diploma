@@ -23,9 +23,7 @@ import {
 
 export const fetchHitsThunked = () => (dispatch) => {
    dispatch(hitsLoading(true));
-   fetch(`${process.env.REACT_APP_URL}top-sales/`, {
-      mode: 'no-cors',
-   })
+   fetch(`${process.env.REACT_APP_URL}top-sales/`)
       .then((responce) => responce.json())
       .then((json) => {
          dispatch(putHits(json));
